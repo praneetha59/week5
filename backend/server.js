@@ -34,7 +34,7 @@ const { getTenantDetailsList } = require('./controllers/superAdminController');
 require('dotenv').config();
 
 const app = express();
-const PORT = 5000;
+const PORT = process.env.PORT || 10000;
 
 // ===================================================
 // 1. MIDDLEWARE (The Order Matters!)
@@ -147,8 +147,11 @@ app.get('/api/health', (req, res) => {
 // ===================================================
 // 4. START SERVER
 // ===================================================
-app.listen(PORT, () => {
+// ===================================================
+// 4. START SERVER
+// ===================================================
+app.listen(PORT, '0.0.0.0', () => {
     console.log(`\n🚀 SERVER RUNNING IN ${process.env.NODE_ENV || 'development'} MODE`);
-    console.log(`🔗 Accessible at: http://localhost:${PORT}`);
+    console.log(`🔗 Accessible at PORT: ${PORT}`);
     console.log(`👉 CORS allowed from: ${process.env.FRONTEND_URL || 'http://localhost:3000'}\n`);
 });
